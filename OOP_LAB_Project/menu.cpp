@@ -1,5 +1,8 @@
 #include "menu.h"
 
+using namespace std;
+
+
 Menu::Menu(sf::RenderWindow& window) 
 {
     if (!font.loadFromFile("Fonts/Bootcamp.otf")) 
@@ -11,8 +14,10 @@ Menu::Menu(sf::RenderWindow& window)
     title.setFont(font);
     title.setString("Space Shooter");
     title.setCharacterSize(50);
-    title.setFillColor(sf::Color::White);
+    title.setFillColor(sf::Color::Yellow);
     title.setStyle(sf::Text::Bold);
+    title.setOutlineColor(sf::Color::Black);
+    title.setOutlineThickness(2);
     title.setPosition(window.getSize().x / 2 - title.getGlobalBounds().width / 2, 50);
 
     // SHOWING START GAME option
@@ -20,6 +25,8 @@ Menu::Menu(sf::RenderWindow& window)
     startText.setString("Start Game");
     startText.setCharacterSize(40);
     startText.setFillColor(sf::Color::White);
+    startText.setOutlineColor(sf::Color::Blue);
+    startText.setOutlineThickness(.5);
     startText.setPosition(window.getSize().x / 2 - startText.getGlobalBounds().width / 2, 150);
     // Rectangle of start game option
     start_r.setSize(sf::Vector2f(195, 50));
@@ -33,6 +40,8 @@ Menu::Menu(sf::RenderWindow& window)
     scoreText.setString("High Scores");
     scoreText.setCharacterSize(40);
     scoreText.setFillColor(sf::Color::White);
+    scoreText.setOutlineColor(sf::Color::Blue);
+    scoreText.setOutlineThickness(.5);
     scoreText.setPosition(window.getSize().x / 2 - scoreText.getGlobalBounds().width / 2, 250);
     // Rectangle of high score option
     score_r.setSize(sf::Vector2f(195, 50));
@@ -46,6 +55,8 @@ Menu::Menu(sf::RenderWindow& window)
     instructText.setString("Instructions");
     instructText.setCharacterSize(40);
     instructText.setFillColor(sf::Color::White);
+    instructText.setOutlineColor(sf::Color::Blue);
+    instructText.setOutlineThickness(.5);
     instructText.setPosition(window.getSize().x / 2 - instructText.getGlobalBounds().width / 2, 350);
     // Rectangle of instruction option
     instruct_r.setSize(sf::Vector2f(195, 50));
@@ -59,6 +70,8 @@ Menu::Menu(sf::RenderWindow& window)
     creditText.setString("Credits");
     creditText.setCharacterSize(40);
     creditText.setFillColor(sf::Color::White);
+    creditText.setOutlineColor(sf::Color::Blue);
+    creditText.setOutlineThickness(.5);
     creditText.setPosition(window.getSize().x / 2 - creditText.getGlobalBounds().width / 2, 450);
     // Rectangle of credits option
     credit_r.setSize(sf::Vector2f(120, 50));
@@ -72,6 +85,8 @@ Menu::Menu(sf::RenderWindow& window)
     exitText.setString("Exit");
     exitText.setCharacterSize(40);
     exitText.setFillColor(sf::Color::White);
+    exitText.setOutlineColor(sf::Color::Blue);
+    exitText.setOutlineThickness(.5);
     exitText.setPosition(window.getSize().x / 2 - exitText.getGlobalBounds().width / 2, 550);
     // Rectangle of exit option
     exit_r.setSize(sf::Vector2f(85, 50));
@@ -199,5 +214,4 @@ void Menu::draw(sf::RenderWindow& window)
     window.draw(exitText);
     window.draw(creditText);
 
-     
 }
