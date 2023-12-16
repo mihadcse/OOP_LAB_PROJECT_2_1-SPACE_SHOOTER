@@ -137,6 +137,7 @@
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Global.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -147,6 +148,7 @@
     <ClInclude Include="Character.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Global.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Score.h" />

@@ -10,6 +10,17 @@ Menu::Menu(sf::RenderWindow& window)
         // Handle font loading error
     }
 
+    //Mouse Cursor image
+    cursor_image.loadFromFile("Image/click6.png");
+    cursor.loadFromPixels(cursor_image.getPixelsPtr(), cursor_image.getSize(), sf::Vector2u(0, 0));
+
+    if (!mouse_buffer.loadFromFile("Audio/mouse.wav"))
+    {
+        // Handle error if the sound file fails to load
+        cout << "Mouse sound error" << endl;
+    }
+    mouse_Sound.setBuffer(mouse_buffer);
+
     // SHOWING SPACE SHOOTER 
     title.setFont(font);
     title.setString("Space Shooter");
@@ -28,7 +39,7 @@ Menu::Menu(sf::RenderWindow& window)
     startText.setOutlineColor(sf::Color::Blue);
     startText.setOutlineThickness(.5);
     startText.setPosition(window.getSize().x / 2 - startText.getGlobalBounds().width / 2, 150);
-    // Rectangle of start game option
+    // Rectangle of start game option 
     start_r.setSize(sf::Vector2f(195, 50));
     start_r.setPosition(window.getSize().x / 2 - start_r.getGlobalBounds().width / 2, 150);
     start_r.setFillColor(sf::Color::Black);
@@ -85,7 +96,7 @@ Menu::Menu(sf::RenderWindow& window)
     exitText.setString("Exit");
     exitText.setCharacterSize(40);
     exitText.setFillColor(sf::Color::White);
-    exitText.setOutlineColor(sf::Color::Blue);
+    exitText.setOutlineColor(sf::Color::Black);
     exitText.setOutlineThickness(.5);
     exitText.setPosition(window.getSize().x / 2 - exitText.getGlobalBounds().width / 2, 550);
     // Rectangle of exit option
@@ -94,47 +105,88 @@ Menu::Menu(sf::RenderWindow& window)
     exit_r.setFillColor(sf::Color::Black);
     exit_r.setOutlineColor(sf::Color::White);
     exit_r.setOutlineThickness(4);
+
+    // Rectangle of back option
+    back_r.setSize(sf::Vector2f(20, 20));
+    back_r.setPosition(10, 10);
+    back_r.setFillColor(sf::Color::Yellow);
+    back_r.setOutlineColor(sf::Color::Red);
+    back_r.setOutlineThickness(4);
+
+    // Score and Health Box Player
+    score_box_player.setSize(sf::Vector2f(165, 165));
+    score_box_player.setPosition(35, 10);
+    score_box_player.setFillColor(sf::Color::Transparent);
+    score_box_player.setOutlineColor(sf::Color::Cyan);
+    score_box_player.setOutlineThickness(4);
+
+    // Health Box Enemy
+    score_box_enemy.setSize(sf::Vector2f(165, 165));
+    score_box_enemy.setPosition(940, 10);
+    score_box_enemy.setFillColor(sf::Color::Transparent);
+    score_box_enemy.setOutlineColor(sf::Color::Cyan);
+    score_box_enemy.setOutlineThickness(4);
+
 }
 
 void Menu::handleInput(sf::RenderWindow& window,sf::Event & event)
 {
+
       if (event.type == sf::Event::MouseButtonPressed) 
       {
-          if (event.mouseButton.button == sf::Mouse::Left) 
+          if (event.mouseButton.button == sf::Mouse::Left)
+          {
+              mouse_Sound.play();
+          }
+          if (event.mouseButton.button == sf::Mouse::Left && trigger == 0) // In manu background
           {
                sf::Vector2i mousePos = sf::Mouse::getPosition(window);
 
                if (start_r.getGlobalBounds().contains(mousePos.x, mousePos.y))
                {
+                   trigger = 1;
                    cout << "Start game clicked" << endl;
                     // Handle the start button click
                     // You can transition to your game or game settings here
                }
                else if (score_r.getGlobalBounds().contains(mousePos.x, mousePos.y))
                {
+                   trigger = 2;
                    cout << "score clicked" << endl;
                    // Handle the exit button click
                    // You can close the window or implement an exit mechanism here
                }
                else if (instruct_r.getGlobalBounds().contains(mousePos.x, mousePos.y))
                {
+                   trigger = 3;
                    cout << "instruction clicked" << endl;
                    // Handle the exit button click
                    // You can close the window or implement an exit mechanism here
                }
                else if (credit_r.getGlobalBounds().contains(mousePos.x, mousePos.y))
                {
+                   trigger = 4;
                    cout << "credit clicked" << endl;
                    // Handle the exit button click
                    // You can close the window or implement an exit mechanism here
                }
                else if (exit_r.getGlobalBounds().contains(mousePos.x, mousePos.y))
-               {    
+               {
+                   trigger = 5;
                    cout << "Exit clicked" << endl;
                    window.close();
                     // Handle the exit button click
                     // You can close the window or implement an exit mechanism here
                }
+          }
+          if (event.mouseButton.button == sf::Mouse::Left && trigger != 0) // Not in menu background
+          {
+              sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+              if (back_r.getGlobalBounds().contains(mousePos.x, mousePos.y))
+              {
+                  trigger = 0;
+                  cout << "Back clicked" << endl;
+              }
           }
       }
 
@@ -201,17 +253,31 @@ void Menu::handleInput(sf::RenderWindow& window,sf::Event & event)
 
 void Menu::draw(sf::RenderWindow& window)
 {
-    window.draw(start_r);
-    window.draw(score_r);
-    window.draw(instruct_r);
-    window.draw(exit_r);
-    window.draw(credit_r);
+    window.setMouseCursor(cursor);
 
-    window.draw(title);
-    window.draw(startText);
-    window.draw(scoreText);
-    window.draw(instructText);
-    window.draw(exitText);
-    window.draw(creditText);
+    if (trigger != 0)
+    {
+        window.draw(back_r);
+    }
+    if (trigger == 0)
+    {
+        window.draw(start_r);
+        window.draw(score_r);
+        window.draw(instruct_r);
+        window.draw(exit_r);
+        window.draw(credit_r);
 
+        window.draw(title);
+        window.draw(startText);
+        window.draw(scoreText);
+        window.draw(instructText);
+        window.draw(exitText);
+        window.draw(creditText);
+    }
+
+    if (trigger == 1)
+    {
+        window.draw(score_box_player);
+        window.draw(score_box_enemy);
+    }
 }
