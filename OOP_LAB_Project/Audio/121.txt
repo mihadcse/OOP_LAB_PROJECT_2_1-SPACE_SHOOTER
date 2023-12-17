@@ -1,0 +1,39 @@
+// Update bullet positions and draw bullets
+if (!player_fire.empty())
+{
+	for (int i = 0; i < player_fire.size(); i++)
+	{
+		player_fire[i].second -= 0.6;
+
+		if (player_fire[i].second <= -40)
+		{
+			continue;
+		}
+		playerFireSpriteVect[i].setPosition(sf::Vector2f(player_fire[i].first + 30, player_fire[i].second + 5));
+		playerFireSpriteVect[i].move(sf::Vector2f(0, -2));
+
+		//enemy_main char fire collision
+		if (playerFireSpriteVect[i].getGlobalBounds().intersects(enemy.EnemySprite.getGlobalBounds()))
+		{
+			enemy_health--;
+			if (enemy_health == 0)
+			{
+				//window.clear();
+				//window.draw(winnerbackgroundsprite);
+				//window.display();
+				//clicked = 7;
+				trigger = 0;
+			}
+			playerFireSpriteVect.erase(playerFireSpriteVect.begin() + i);
+			player_fire.erase(player_fire.begin() + i);
+			//if (enemy_health--)
+			point++;
+			score_show++;
+			//scoring
+		}
+	}
+}
+for (size_t i = 0; i < playerFireSpriteVect.size(); i++)
+{
+	window.draw(playerFireSpriteVect[i]);
+}

@@ -1,2 +1,38 @@
-﻿  Enemy.cpp
+﻿  main.cpp
+D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\main.cpp(107,140): warning C4244: 'argument': conversion from '_Ty2' to 'T', possible loss of data
+          with
+          [
+              _Ty2=double
+          ]
+          and
+          [
+              T=float
+          ]
+D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\main.cpp(107,105): warning C4244: 'argument': conversion from '_Ty1' to 'T', possible loss of data
+          with
+          [
+              _Ty1=double
+          ]
+          and
+          [
+              T=float
+          ]
+D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\main.cpp(153,134): warning C4244: 'argument': conversion from '_Ty2' to 'T', possible loss of data
+          with
+          [
+              _Ty2=double
+          ]
+          and
+          [
+              T=float
+          ]
+D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\main.cpp(153,101): warning C4244: 'argument': conversion from '_Ty1' to 'T', possible loss of data
+          with
+          [
+              _Ty1=double
+          ]
+          and
+          [
+              T=float
+          ]
   OOP_LAB_Project.vcxproj -> D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\x64\Debug\OOP_LAB_Project.exe

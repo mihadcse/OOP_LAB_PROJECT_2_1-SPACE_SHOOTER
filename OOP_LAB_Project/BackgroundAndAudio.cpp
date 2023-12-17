@@ -104,6 +104,7 @@ void BackgroundAndAudio::updateAnimation(sf::RenderWindow& window)
             sf::sleep(sf::seconds(0.008)); // Add a slight delay between frames
             window.clear(); // Clear the window for the next frame
         }
+        //
     }
 }
 

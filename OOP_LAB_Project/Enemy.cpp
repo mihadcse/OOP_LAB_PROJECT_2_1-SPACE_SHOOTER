@@ -4,12 +4,42 @@ using namespace std;
 
 Enemy::Enemy(sf::RenderWindow& window)
 {
+	if (!font2.loadFromFile("Fonts/batmfa__.ttf"))
+	{
+		// Handle font loading error
+	}
+	//Enemy create
 	if (!EnemyTexture.loadFromFile("Image/enemy1.png"))
 	{
 		cout << "Enemy image error" << endl;
 	}
 	EnemySprite.setTexture(EnemyTexture);
 	EnemySprite.setPosition(sf::Vector2f(500, 70));
+
+	//Enemy fire create
+	//Player Fire Create
+	if (!Enemy_fire_texture.loadFromFile("Image/bullet1.png"))
+	{
+		cout << "player fire error!!\n";
+	}
+	Enemy_fire_sprite.setTexture(Enemy_fire_texture);
+
+	//Enemy text
+	enemy_Text.setFont(font2);
+	enemy_Text.setString("ENEMY");
+	enemy_Text.setPosition(970, 20);
+	enemy_Text.setCharacterSize(20);
+	enemy_Text.setFillColor(sf::Color::Green);
+	enemy_Text.setOutlineThickness(2);
+	enemy_Text.setOutlineColor(sf::Color::Black);
+
+	//Enemy health text
+	enemy_health_text.setFont(font2);
+	enemy_health_text.setPosition(945, 50);
+	enemy_health_text.setCharacterSize(20);
+	enemy_health_text.setFillColor(sf::Color::Green);
+	enemy_health_text.setOutlineThickness(2);
+	enemy_health_text.setOutlineColor(sf::Color::Black);
 }
 
 void Enemy::move(sf::RenderWindow& window)
@@ -38,8 +68,19 @@ void Enemy::move(sf::RenderWindow& window)
 	}
 }
 
-void Enemy::fire()
+void Enemy::fire(sf::RenderWindow& window)
 {
+	sf::Time deltaTime = clock.restart();
+	float elapsedTime = deltaTime.asSeconds();
+
+	static float timeSinceLastFire = 0.f;
+	timeSinceLastFire += elapsedTime;
+	if (timeSinceLastFire >= fireInterval) 
+	{
+		enemy_fire.push_back(make_pair(EnemySprite.getPosition().x, EnemySprite.getPosition().y));
+		timeSinceLastFire = 1.2f;
+		enemyFireSpriteVect.push_back(Enemy_fire_sprite);
+	}
 }
 
 void Enemy::draw(sf::RenderWindow& window, int tri)
@@ -48,5 +89,9 @@ void Enemy::draw(sf::RenderWindow& window, int tri)
 	{
 		window.draw(EnemyHealthbar);
 		window.draw(EnemySprite);
+		window.draw(enemy_Text);
+		string enemyhealthstring = to_string(enemy_health);
+		enemy_health_text.setString("Health - " + enemyhealthstring);
+		window.draw(enemy_health_text);
 	}
 }

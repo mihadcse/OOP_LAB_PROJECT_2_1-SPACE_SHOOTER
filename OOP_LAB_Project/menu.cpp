@@ -10,6 +10,11 @@ Menu::Menu(sf::RenderWindow& window)
         // Handle font loading error
     }
 
+    if (!font2.loadFromFile("Fonts/batmfa__.ttf"))
+    {
+        // Handle font loading error
+    }
+
     //Mouse Cursor image
     cursor_image.loadFromFile("Image/click6.png");
     cursor.loadFromPixels(cursor_image.getPixelsPtr(), cursor_image.getSize(), sf::Vector2u(0, 0));
@@ -21,88 +26,99 @@ Menu::Menu(sf::RenderWindow& window)
     }
     mouse_Sound.setBuffer(mouse_buffer);
 
+    //Mouse positiong sound
+    if (trigger != 1)
+    {
+        if (!pos_buffer.loadFromFile("Audio/pos1.wav"))
+        {
+            // Handle error if the sound file fails to load
+            cout << "Mouse sound error" << endl;
+        }
+        pos_sound.setBuffer(pos_buffer);
+    }
+  
     // SHOWING SPACE SHOOTER 
-    title.setFont(font);
+    title.setFont(font2);
     title.setString("Space Shooter");
-    title.setCharacterSize(50);
-    title.setFillColor(sf::Color::Yellow);
-    title.setStyle(sf::Text::Bold);
-    title.setOutlineColor(sf::Color::Black);
-    title.setOutlineThickness(2);
+    title.setCharacterSize(54);
+    title.setFillColor(sf::Color::Yellow); // 102, 0, 255 // 0, 255, 255
+    title.setStyle(sf::Text::Regular);
+    title.setOutlineColor(sf::Color(0,0,0)); // 255, 255, 102
+    title.setOutlineThickness(3);
     title.setPosition(window.getSize().x / 2 - title.getGlobalBounds().width / 2, 50);
 
     // SHOWING START GAME option
-    startText.setFont(font);
+    startText.setFont(font2);
     startText.setString("Start Game");
     startText.setCharacterSize(40);
     startText.setFillColor(sf::Color::White);
-    startText.setOutlineColor(sf::Color::Blue);
-    startText.setOutlineThickness(.5);
+    startText.setOutlineColor(sf::Color::Black);
+    startText.setOutlineThickness(3);
     startText.setPosition(window.getSize().x / 2 - startText.getGlobalBounds().width / 2, 150);
     // Rectangle of start game option 
-    start_r.setSize(sf::Vector2f(195, 50));
+    start_r.setSize(sf::Vector2f(260, 50));
     start_r.setPosition(window.getSize().x / 2 - start_r.getGlobalBounds().width / 2, 150);
-    start_r.setFillColor(sf::Color::Black);
-    start_r.setOutlineColor(sf::Color::White);
-    start_r.setOutlineThickness(4);
+    start_r.setFillColor(sf::Color::Transparent);
+    start_r.setOutlineColor(sf::Color::Black);
+    start_r.setOutlineThickness(6);
 
     // SHOWING HIGH SCORES option
-    scoreText.setFont(font);
+    scoreText.setFont(font2);
     scoreText.setString("High Scores");
     scoreText.setCharacterSize(40);
     scoreText.setFillColor(sf::Color::White);
-    scoreText.setOutlineColor(sf::Color::Blue);
-    scoreText.setOutlineThickness(.5);
+    scoreText.setOutlineColor(sf::Color::Black);
+    scoreText.setOutlineThickness(3);
     scoreText.setPosition(window.getSize().x / 2 - scoreText.getGlobalBounds().width / 2, 250);
     // Rectangle of high score option
-    score_r.setSize(sf::Vector2f(195, 50));
+    score_r.setSize(sf::Vector2f(265, 50));
     score_r.setPosition(window.getSize().x / 2 - score_r.getGlobalBounds().width / 2, 250);
-    score_r.setFillColor(sf::Color::Black);
+    score_r.setFillColor(sf::Color::Transparent);
     score_r.setOutlineColor(sf::Color::White);
     score_r.setOutlineThickness(4);
 
     //SHOWING INSTRUCTIONS option
-    instructText.setFont(font);
+    instructText.setFont(font2);
     instructText.setString("Instructions");
     instructText.setCharacterSize(40);
     instructText.setFillColor(sf::Color::White);
-    instructText.setOutlineColor(sf::Color::Blue);
-    instructText.setOutlineThickness(.5);
+    instructText.setOutlineColor(sf::Color::Black);
+    instructText.setOutlineThickness(3);
     instructText.setPosition(window.getSize().x / 2 - instructText.getGlobalBounds().width / 2, 350);
     // Rectangle of instruction option
-    instruct_r.setSize(sf::Vector2f(195, 50));
+    instruct_r.setSize(sf::Vector2f(295, 50));
     instruct_r.setPosition(window.getSize().x / 2 - instruct_r.getGlobalBounds().width / 2, 350);
-    instruct_r.setFillColor(sf::Color::Black);
+    instruct_r.setFillColor(sf::Color::Transparent);
     instruct_r.setOutlineColor(sf::Color::White);
     instruct_r.setOutlineThickness(4);
 
     //SHOWING CREDITS OPTION
-    creditText.setFont(font);
+    creditText.setFont(font2);
     creditText.setString("Credits");
     creditText.setCharacterSize(40);
     creditText.setFillColor(sf::Color::White);
-    creditText.setOutlineColor(sf::Color::Blue);
-    creditText.setOutlineThickness(.5);
+    creditText.setOutlineColor(sf::Color::Black);
+    creditText.setOutlineThickness(3);
     creditText.setPosition(window.getSize().x / 2 - creditText.getGlobalBounds().width / 2, 450);
     // Rectangle of credits option
-    credit_r.setSize(sf::Vector2f(120, 50));
+    credit_r.setSize(sf::Vector2f(165, 50));
     credit_r.setPosition(window.getSize().x / 2 - credit_r.getGlobalBounds().width / 2, 450);
-    credit_r.setFillColor(sf::Color::Black);
+    credit_r.setFillColor(sf::Color::Transparent);
     credit_r.setOutlineColor(sf::Color::White);
     credit_r.setOutlineThickness(4);
 
     // SHOWING EXIT option
-    exitText.setFont(font);
+    exitText.setFont(font2);
     exitText.setString("Exit");
     exitText.setCharacterSize(40);
     exitText.setFillColor(sf::Color::White);
     exitText.setOutlineColor(sf::Color::Black);
-    exitText.setOutlineThickness(.5);
+    exitText.setOutlineThickness(3);
     exitText.setPosition(window.getSize().x / 2 - exitText.getGlobalBounds().width / 2, 550);
     // Rectangle of exit option
-    exit_r.setSize(sf::Vector2f(85, 50));
+    exit_r.setSize(sf::Vector2f(80, 50));
     exit_r.setPosition(window.getSize().x / 2 - exit_r.getGlobalBounds().width / 2, 550);
-    exit_r.setFillColor(sf::Color::Black);
+    exit_r.setFillColor(sf::Color::Transparent);
     exit_r.setOutlineColor(sf::Color::White);
     exit_r.setOutlineThickness(4);
 
@@ -131,10 +147,10 @@ Menu::Menu(sf::RenderWindow& window)
 
 void Menu::handleInput(sf::RenderWindow& window,sf::Event & event)
 {
-
+      // Clicking options
       if (event.type == sf::Event::MouseButtonPressed) 
       {
-          if (event.mouseButton.button == sf::Mouse::Left)
+          if (event.mouseButton.button == sf::Mouse::Left && trigger != 1)
           {
               mouse_Sound.play();
           }
@@ -190,13 +206,16 @@ void Menu::handleInput(sf::RenderWindow& window,sf::Event & event)
           }
       }
 
-      else if (event.type == sf::Event::MouseMoved)
+      else if (event.type == sf::Event::MouseMoved && trigger == 0)
       {
+          bool soundPlayed = false; // Flag to track if sound was played
           //Start game color theme
           if (start_r.getGlobalBounds().contains(event.mouseMove.x, event.mouseMove.y))
           {
+              pos_sound.play();
               start_r.setOutlineColor(sf::Color(0, 128, 255)); // Lighter shade
               startText.setFillColor(sf::Color(30, 144, 255));
+              soundPlayed = true;
           }
           else
           {
@@ -206,8 +225,10 @@ void Menu::handleInput(sf::RenderWindow& window,sf::Event & event)
           //score color theme
           if (score_r.getGlobalBounds().contains(event.mouseMove.x, event.mouseMove.y))
           {
+              pos_sound.play();
               score_r.setOutlineColor(sf::Color(0, 128, 255)); // Lighter shade
               scoreText.setFillColor(sf::Color(30, 144, 255));
+              soundPlayed = true;
           }
           else
           {
@@ -217,8 +238,10 @@ void Menu::handleInput(sf::RenderWindow& window,sf::Event & event)
           //Instruction color theme
           if (instruct_r.getGlobalBounds().contains(event.mouseMove.x, event.mouseMove.y))
           {
+              pos_sound.play();
               instruct_r.setOutlineColor(sf::Color(0, 128, 255)); // Lighter shade
               instructText.setFillColor(sf::Color(30, 144, 255));
+              soundPlayed = true;
           }
           else
           {
@@ -228,8 +251,10 @@ void Menu::handleInput(sf::RenderWindow& window,sf::Event & event)
           //Credit color theme
           if (credit_r.getGlobalBounds().contains(event.mouseMove.x, event.mouseMove.y))
           {
+              pos_sound.play();
               credit_r.setOutlineColor(sf::Color(0, 128, 255)); // Lighter shade
               creditText.setFillColor(sf::Color(30, 144, 255));
+              soundPlayed = true;
           }
           else
           {
@@ -239,15 +264,20 @@ void Menu::handleInput(sf::RenderWindow& window,sf::Event & event)
           //Exit color theme
           if (exit_r.getGlobalBounds().contains(event.mouseMove.x, event.mouseMove.y))
           {
+              pos_sound.play();
               exit_r.setOutlineColor(sf::Color(255, 0, 0)); // Lighter shade
               exitText.setFillColor(sf::Color(255, 0, 0));
+              soundPlayed = true;
           }
           else
           {
               exit_r.setOutlineColor(sf::Color::White); // Default color
               exitText.setFillColor(sf::Color::White);
           }
-          
+          if (!soundPlayed)
+          {
+              soundPlayed = false;
+          }
       }
 }
 
@@ -261,11 +291,13 @@ void Menu::draw(sf::RenderWindow& window)
     }
     if (trigger == 0)
     {
+        /*
         window.draw(start_r);
         window.draw(score_r);
         window.draw(instruct_r);
         window.draw(exit_r);
         window.draw(credit_r);
+        */
 
         window.draw(title);
         window.draw(startText);

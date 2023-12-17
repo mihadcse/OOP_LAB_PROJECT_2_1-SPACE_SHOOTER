@@ -19,19 +19,18 @@ private:
     sf::Image cursor_image;
     sf::Cursor cursor;
     sf::Font font;
+    sf::Font font2;
     sf::Text title;
     sf::Text startText;
     sf::Text exitText;
     sf::Text scoreText;
     sf::Text instructText;
     sf::Text creditText;
-
-    sf::Text game_player;
-    sf::Text player_score;
-    sf::Text player_health;
  
     sf::SoundBuffer mouse_buffer;
     sf::Sound mouse_Sound;
+    sf::SoundBuffer pos_buffer;
+    sf::Sound pos_sound;
 
     sf::RectangleShape start_r;
     sf::RectangleShape exit_r; 

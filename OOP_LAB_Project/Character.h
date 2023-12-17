@@ -16,6 +16,6 @@ public:
 
     // Common methods for movement or actions (virtual for polymorphism)
     virtual void move(sf::RenderWindow& window) = 0; // Pure virtual function for movement
-    virtual void fire() = 0; // pure virtual function for firing
+    virtual void fire(sf::RenderWindow& window) = 0; // pure virtual function for firing
     virtual void draw(sf::RenderWindow& window, int tri) = 0;
 };
