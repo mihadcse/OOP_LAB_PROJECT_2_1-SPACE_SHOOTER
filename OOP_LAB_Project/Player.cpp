@@ -1,18 +1,21 @@
 #include "Player.h"
 using namespace std;
 
-Player::Player(sf::RenderWindow& window)
+Player::Player(sf::RenderWindow& window) : powerups(window)
 {
 	if (!font2.loadFromFile("Fonts/batmfa__.ttf"))
 	{
 		// Handle font loading error
 	}
 	// Player Image
-	if (!PlayerTexture.loadFromFile("Image/plane2.png"))
+	if (!PlayerTexture1.loadFromFile("Image/plane3.png"))
 	{
 		cout << "Player image error" << endl;
 	}
-	PlayerSprite.setTexture(PlayerTexture);
+	if (!PlayerTexture2.loadFromFile("Image/plane4.png"))
+	{
+		cout << "Player image error" << endl;
+	}
 	PlayerSprite.setPosition(sf::Vector2f(500, 550));
 
 	//Player Fire Create
@@ -36,7 +39,7 @@ Player::Player(sf::RenderWindow& window)
 	player_Text.setString("PLAYER");
 	player_Text.setPosition(60, 20);
 	player_Text.setCharacterSize(20);
-	player_Text.setFillColor(sf::Color::Green);
+	player_Text.setFillColor(sf::Color::Yellow);
 	player_Text.setOutlineThickness(2);
 	player_Text.setOutlineColor(sf::Color::Black);
 
@@ -63,13 +66,29 @@ Player::Player(sf::RenderWindow& window)
 	ammo_Text.setFillColor(sf::Color::Green);
 	ammo_Text.setOutlineThickness(2);
 	ammo_Text.setOutlineColor(sf::Color::Black);
+
+	// Player powerup text
+	power_Text.setFont(font2);
+	power_Text.setPosition(40, 140);
+	power_Text.setCharacterSize(20);
+	power_Text.setFillColor(sf::Color::Green);
+	power_Text.setOutlineThickness(2);
+	power_Text.setOutlineColor(sf::Color::Black);
+
+	// Level text
+	level_text.setFont(font2);
+	level_text.setPosition(window.getSize().x / 2 - 70, 20);
+	level_text.setCharacterSize(30);
+	level_text.setFillColor(sf::Color::Cyan);
+	level_text.setOutlineThickness(2);
+	level_text.setOutlineColor(sf::Color::Blue);
 }
 
 void Player::move(sf::RenderWindow& window)
 {
 	sf::Vector2f healthBarSize(88, 10);
 	PlayerHealthbar.setSize(sf::Vector2f(healthBarSize.x, healthBarSize.y));
-	PlayerHealthbar.setFillColor(sf::Color::White);
+	PlayerHealthbar.setFillColor(sf::Color::Transparent);
 	PlayerHealthbar.setPosition(PlayerSprite.getPosition().x + 3, PlayerSprite.getPosition().y - 6);
 
 	//LEFT MOVEMENT
@@ -111,24 +130,35 @@ void Player::move(sf::RenderWindow& window)
 			PlayerHealthbar.move(sf::Vector2f(0, 0.35));
 		}
 	}
-
 }
 
-void Player::fire(sf::RenderWindow& window)
-{
-	// Char_firing
+void Player::fire(sf::RenderWindow& window)  // Player firing
+{	
 	Player_fire_sound.play();
 	player_fire.push_back(make_pair(PlayerSprite.getPosition().x, PlayerSprite.getPosition().y));
 	playerFireSpriteVect.push_back(Player_fire_sprite);
 }
 
+void Player::special_fire(sf::RenderWindow& window)
+{
+	powerups.createPowerup(window);
+	powerup_fire.push_back(make_pair(PlayerSprite.getPosition().x, PlayerSprite.getPosition().y));
+	powerup_SpriteVect.push_back(powerups.powerupSprite);
+}
+
 void Player::draw(sf::RenderWindow& window, int tri)
 {
-	if (tri == 1)
+	if (tri == 1 || tri == 6)
 	{
+		if (tri == 1)
+			PlayerSprite.setTexture(PlayerTexture1);
+		if (tri == 6)
+			PlayerSprite.setTexture(PlayerTexture2);
+
 		window.draw(PlayerHealthbar);
 		window.draw(PlayerSprite);
 		window.draw(player_Text);
+		window.draw(level_text);
 
 		string playerhealthstring = to_string(player_health);
 		player_health_Text.setString("Health - " + playerhealthstring);
@@ -141,5 +171,13 @@ void Player::draw(sf::RenderWindow& window, int tri)
 		string playerammostring = to_string(ammo);
 		ammo_Text.setString("Ammo - " + playerammostring);
 		window.draw(ammo_Text);
+
+		string playerpowerstring = to_string(power);
+		power_Text.setString("Power - " + playerpowerstring);
+		window.draw(power_Text);
+
+		string levelstring = to_string(level);
+		level_text.setString("Level - " + levelstring);
+		window.draw(level_text);
 	}
 }

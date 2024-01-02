@@ -15,6 +15,7 @@ public:
     // Draw the main menu on the window
     void draw(sf::RenderWindow& window);
 
+
 private:
     sf::Image cursor_image;
     sf::Cursor cursor;
@@ -26,6 +27,8 @@ private:
     sf::Text scoreText;
     sf::Text instructText;
     sf::Text creditText;
+    sf::Text cred1Text;
+    sf::Text instruction_Text;
  
     sf::SoundBuffer mouse_buffer;
     sf::Sound mouse_Sound;

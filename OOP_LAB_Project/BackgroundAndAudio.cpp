@@ -19,6 +19,42 @@ BackgroundAndAudio::BackgroundAndAudio(sf::RenderWindow& window)
     }
     game_backgroundSprite.setTexture(game_backgroundTexture);
 
+    //Level 2 background
+    if (!game2_backgroundTexture.loadFromFile("Image/5.jpg"))
+    {
+        //Handle error
+        cout << "game 2 background error" << endl;
+    }
+    game2_backgroundSprite.setTexture(game2_backgroundTexture);
+
+    if (!instruct_backgroundTexture.loadFromFile("Image/i3.jpg"))
+    {
+        //Handle error
+        cout << "instruction background error" << endl;
+    }
+    instruct_backgroundSprite.setTexture(instruct_backgroundTexture);
+
+    if (!winner_backgroundTexture.loadFromFile("Image/11.jpg"))
+    {
+        //Handle error
+        cout << "game 2 background error" << endl;
+    }
+    winner_backgroundSprite.setTexture(winner_backgroundTexture);
+
+    if (!gameover_backgroundTexture.loadFromFile("Image/gameover.jpg"))
+    {
+        //Handle error
+        cout << "game 2 background error" << endl;
+    }
+    gameover_backgroundSprite.setTexture(gameover_backgroundTexture);
+
+    if (!credit_backgroundTexture.loadFromFile("Image/credit.jpg"))
+    {
+        //Handle error
+        cout << "credit background error" << endl;
+    }
+    credit_backgroundSprite.setTexture(credit_backgroundTexture);
+
     // Load background music - This part is missing in your code
     
     if (!backgroundSound.loadFromFile("Audio/back.wav"))
@@ -37,6 +73,12 @@ BackgroundAndAudio::BackgroundAndAudio(sf::RenderWindow& window)
     game_backsound.setBuffer(game_backgroundsound);
     game_backsound.setLoop(true);
 
+    if (!enemy_entry_buffer.loadFromFile("Audio/entry_enemy.wav"))
+    {
+        // Handle error
+        cout << "Game BAck Audio error" << endl;
+    }
+    enemy_entry_sound.setBuffer(enemy_entry_buffer);
 }
 
 
@@ -71,6 +113,26 @@ void BackgroundAndAudio::draw(sf::RenderWindow& window,int tri)
     if (tri == 1)
     {
         window.draw(game_backgroundSprite);
+    }
+    if (tri == 3)
+    {
+        window.draw(instruct_backgroundSprite);
+    }
+    if (tri == 4)
+    {
+        window.draw(credit_backgroundSprite);
+    }
+    if (tri == 6)
+    {
+        window.draw(game2_backgroundSprite);
+    }
+    if (tri == 7)
+    {
+        window.draw(winner_backgroundSprite);
+    }
+    if (tri == 8)
+    {
+        window.draw(gameover_backgroundSprite);
     }
 }
 

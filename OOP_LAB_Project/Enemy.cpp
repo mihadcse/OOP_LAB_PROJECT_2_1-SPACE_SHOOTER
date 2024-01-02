@@ -9,18 +9,22 @@ Enemy::Enemy(sf::RenderWindow& window)
 		// Handle font loading error
 	}
 	//Enemy create
-	if (!EnemyTexture.loadFromFile("Image/enemy1.png"))
+	if (!EnemyTexture1.loadFromFile("Image/enemy2.png"))
 	{
 		cout << "Enemy image error" << endl;
 	}
-	EnemySprite.setTexture(EnemyTexture);
+	if (!EnemyTexture2.loadFromFile("Image/enemy4.png"))
+	{
+		cout << "Enemy image error" << endl;
+	}
 	EnemySprite.setPosition(sf::Vector2f(500, 70));
 
+
+
 	//Enemy fire create
-	//Player Fire Create
-	if (!Enemy_fire_texture.loadFromFile("Image/bullet1.png"))
+	if (!Enemy_fire_texture.loadFromFile("Image/bullet2.png"))
 	{
-		cout << "player fire error!!\n";
+		cout << "enemy fire error!!\n";
 	}
 	Enemy_fire_sprite.setTexture(Enemy_fire_texture);
 
@@ -29,7 +33,7 @@ Enemy::Enemy(sf::RenderWindow& window)
 	enemy_Text.setString("ENEMY");
 	enemy_Text.setPosition(970, 20);
 	enemy_Text.setCharacterSize(20);
-	enemy_Text.setFillColor(sf::Color::Green);
+	enemy_Text.setFillColor(sf::Color::Yellow);
 	enemy_Text.setOutlineThickness(2);
 	enemy_Text.setOutlineColor(sf::Color::Black);
 
@@ -46,7 +50,7 @@ void Enemy::move(sf::RenderWindow& window)
 {
 	sf::Vector2f healthBarSize(100, 10);
 	EnemyHealthbar.setSize(sf::Vector2f(healthBarSize.x, healthBarSize.y));
-	EnemyHealthbar.setFillColor(sf::Color::White);
+	EnemyHealthbar.setFillColor(sf::Color::Transparent);
 	EnemyHealthbar.setPosition(EnemySprite.getPosition().x + 10, EnemySprite.getPosition().y + 110);
 
 	if (EnemySprite.getPosition().x <= 0)
@@ -85,8 +89,12 @@ void Enemy::fire(sf::RenderWindow& window)
 
 void Enemy::draw(sf::RenderWindow& window, int tri)
 {
-	if (tri == 1)
+	if (tri == 1 || tri == 6)
 	{
+		if (tri == 1)
+			EnemySprite.setTexture(EnemyTexture1);
+		if (tri == 6)
+			EnemySprite.setTexture(EnemyTexture2);
 		window.draw(EnemyHealthbar);
 		window.draw(EnemySprite);
 		window.draw(enemy_Text);

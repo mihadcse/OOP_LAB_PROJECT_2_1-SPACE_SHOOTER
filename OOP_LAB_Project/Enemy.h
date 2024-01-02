@@ -22,7 +22,8 @@ protected:
     sf::Text enemy_Text;
 
 public:
-    sf::Texture EnemyTexture;
+    sf::Texture EnemyTexture1;
+    sf::Texture EnemyTexture2;
     sf::Sprite EnemySprite;
     vector<sf::Sprite>enemyFireSpriteVect;
     vector<pair <double, double> >enemy_fire;

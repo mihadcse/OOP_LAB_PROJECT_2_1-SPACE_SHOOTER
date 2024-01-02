@@ -18,6 +18,8 @@ using namespace std;
 
 sf::SoundBuffer reload_buffer;
 sf::Sound reloadsound;
+sf::SoundBuffer reload_power_buffer;
+sf::Sound reload_power_sound;
 
 int main()
 {
@@ -30,8 +32,7 @@ int main()
 
     bool musicPlaying = false; // Flag to track music state
 
-    cout << ammo << endl;
-
+    //cout << ammo << endl;
     while (window.isOpen()) 
     {
         sf::Event event;
@@ -41,18 +42,29 @@ int main()
             {
                 window.close();
             }
-            // Pass the event to the MainMenu for handling user input
+       
             menu.handleInput(window,event);
-            if (trigger == 1 && event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space && ammo > 0)
+            if (trigger == 1 || trigger == 6)
             {
-                ammo--;
-                player.fire(window); // Pass the event here if needed
-                window.display();
-            } 
+                if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space && ammo > 0)
+                {
+                    ammo--;
+                    player.fire(window); // Normal firing
+                    reset = 0; // So it tells that a new game starts
+                    window.display();
+                }
+                if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::P && power > 0)
+                {
+                    power--;
+                    player.special_fire(window); // Powerups use
+                    reset = 0; // So it tells that a new game starts
+                    window.display();
+                }
+            }
             //Ammo reloading
             if ((event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::R)) 
             {
-                if (ammo == 0)
+                if (ammo == 0 && point >= 5)
                 {
                     if (!reload_buffer.loadFromFile("Audio/reload_main.wav"))
                     {
@@ -61,24 +73,39 @@ int main()
                     reloadsound.setBuffer(reload_buffer);
                     reloadsound.play();
                     reload(); 
+                    point = point - 5;
+                }
+            }
+            //powerup reloading
+            if ((event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::B))
+            {
+                if (power == 0 && point >= 10)
+                {
+                    if (!reload_power_buffer.loadFromFile("Audio/reload_main.wav"))
+                    {
+                        cout << "reload buffer sound error!!!\n";
+                    }
+                    reload_power_sound.setBuffer(reload_power_buffer);
+                    reload_power_sound.play();
+                    power = 5;
+                    point = point - 10;
                 }
             }
         }
-  
+        
         window.clear(); // Clear the window
 
         //Display main menu background
         menu_background.draw(window, trigger);
-  
-        if (trigger == 1 && musicPlaying)
+
+        if ((trigger == 1 || trigger == 6) && musicPlaying)
         {
             menu_background.stopMusic();
-            // Display game animation frames
             window.clear(); // Clear the window before drawing frames
             //menu_background.updateAnimation(window);// Animation draw
             musicPlaying = false; // Update the flag
         }
-        else if (trigger == 0 && !musicPlaying)
+        else if ((trigger == 0 || trigger == 7 || trigger == 8) && !musicPlaying)
         {
             menu_background.playMusic();
             musicPlaying = true; // Update the flag
@@ -86,13 +113,14 @@ int main()
 
         // Display Menu
         menu.draw(window);
-        if (trigger == 1)
+        if (trigger == 1 || trigger == 6)
         {
             player.draw(window, trigger);
             player.move(window);
             enemy.draw(window, trigger);
             enemy.move(window);
             enemy.fire(window);
+
             // Update bullet positions and draw bullets
             if (!player.player_fire.empty())
             {
@@ -108,25 +136,30 @@ int main()
                     player.playerFireSpriteVect[i].move(sf::Vector2f(0, -2));
 
                     //enemy_main player fire collision
-                    if (player.playerFireSpriteVect[i].getGlobalBounds().intersects(enemy.EnemySprite.getGlobalBounds()))
+                    if (player.playerFireSpriteVect[i].getGlobalBounds().intersects(enemy.EnemySprite.getGlobalBounds()))  
                     {
-                        enemy_health--;
-                        if (enemy_health == 0)
+                        if (reset == 0)
                         {
-                            //window.clear();
-                            //window.draw(winnerbackgroundsprite);
-                            //window.display();
-                            //clicked = 7;
+                            enemy_health--;
+                            point++;
+                            score_show++;
+                        }
+                        if (enemy_health <= 0 && trigger == 1)
+                        {
+                            //reset_game();
+                            enemy_health = enemyHeathFull;
+                            trigger = 6;
+                            level = 2;
+                            break;
+                        }
+                        if(enemy_health <= 0 && trigger != 1)
+                        {
+                            trigger = 7;
                             reset_game();
-                            trigger = 0;
                             break;
                         }
                         player.playerFireSpriteVect.erase(player.playerFireSpriteVect.begin() + i);
                         player.player_fire.erase(player.player_fire.begin() + i);
-                        //if (enemy_health--)
-                        point++;
-                        score_show++;
-                        //scoring
                     }
                 }
             }
@@ -146,10 +179,6 @@ int main()
                     {
                         continue;
                     }
-                    /*if (enemyFireBox.getGlobalBounds().intersects(charHealthBarBack.getGlobalBounds())) {
-                        player.health -= 40;
-                        window.draw(rectangle6);
-                    }*/
                     enemy.enemyFireSpriteVect[j].setPosition(sf::Vector2f(enemy.enemy_fire[j].first + 30, enemy.enemy_fire[j].second + 15));
                     enemy.enemyFireSpriteVect[j].move(sf::Vector2f(0, 2));
                     //enemy_fire character plane collision 
@@ -158,14 +187,10 @@ int main()
                         enemy.enemyFireSpriteVect.erase(enemy.enemyFireSpriteVect.begin() + j);
                         enemy.enemy_fire.erase(enemy.enemy_fire.begin() + j);
                         player_health--;
-                        if (player_health == 0)
+                        if (player_health <= 0)
                         {
-                            //window.clear();
-                            //window.draw(gameoverbackgroundsprite);
-                            //window.display();
-                            //clicked = 8;
                             reset_game();
-                            trigger = 0;
+                            trigger = 8;
                             break;
                         }
                     }
@@ -175,6 +200,59 @@ int main()
                     window.draw(enemy.enemyFireSpriteVect[i]);
                 }
             }
+
+            // Update bullet positions and draw bullets
+            if (!player.powerup_fire.empty())
+            {
+                for (int i = 0; i < player.powerup_fire.size(); i++)
+                {
+                    player.powerup_fire[i].second -= 0.6;
+
+                    if (player.powerup_fire[i].second <= -60)
+                    {
+                        continue;
+                    }
+                    player.powerup_SpriteVect[i].setPosition(sf::Vector2f(player.powerup_fire[i].first + 30, player.powerup_fire[i].second + 5));
+                    player.powerup_SpriteVect[i].move(sf::Vector2f(0, -2));
+                    //enemy_main player fire collision
+                    if (player.powerup_SpriteVect[i].getGlobalBounds().intersects(enemy.EnemySprite.getGlobalBounds()))
+                    {
+                        if (reset == 0)
+                        {
+                            enemy_health = enemy_health - 3;
+                            point = point + 3;
+                            score_show++;
+                        }
+                        if (enemy_health <= 0 && trigger == 1)
+                        {
+                            //reset_game();
+                            enemy_health = enemyHeathFull;
+                            trigger = 6;
+                            level = 2;
+                            break;
+                        }
+                        if (enemy_health <= 0 && trigger != 1)
+                        {
+                            trigger = 7;
+                            reset_game();
+                            break;
+                        }
+                        player.powerup_SpriteVect.erase(player.powerup_SpriteVect.begin() + i);
+                        player.powerup_fire.erase(player.powerup_fire.begin() + i);
+                    }
+                }
+            }
+            for (size_t i = 0; i < player.powerup_SpriteVect.size(); i++)
+            {
+                window.draw(player.powerup_SpriteVect[i]);
+            }
+
+        }
+        // When ammo and power becomes 0 and points is less than 5 it will show game over
+        if (ammo == 0 && power == 0 && point < 5)
+        {
+            reset_game();
+            trigger = 8;
         }
 
         window.display(); // Display the content on the window

@@ -5,7 +5,7 @@ using namespace std;
 
 Menu::Menu(sf::RenderWindow& window) 
 {
-    if (!font.loadFromFile("Fonts/Bootcamp.otf")) 
+    if (!font.loadFromFile("Fonts/NEON GLOW-Bold.otf")) 
     {
         // Handle font loading error
     }
@@ -125,7 +125,7 @@ Menu::Menu(sf::RenderWindow& window)
     // Rectangle of back option
     back_r.setSize(sf::Vector2f(20, 20));
     back_r.setPosition(10, 10);
-    back_r.setFillColor(sf::Color::Yellow);
+    back_r.setFillColor(sf::Color::Cyan);
     back_r.setOutlineColor(sf::Color::Red);
     back_r.setOutlineThickness(4);
 
@@ -142,6 +142,24 @@ Menu::Menu(sf::RenderWindow& window)
     score_box_enemy.setFillColor(sf::Color::Transparent);
     score_box_enemy.setOutlineColor(sf::Color::Cyan);
     score_box_enemy.setOutlineThickness(4);
+
+    // Instructions texts
+    instruction_Text.setFont(font2);
+    instruction_Text.setString("\t\t\t\t  Instructions\n\n\t## Press 'up', 'down', 'right', 'left'\n\t\t\tkeys for movement.\n\n\t## Press 'SPACE' Key for fire.\n\n\t## Press 'P' for Power-ups.\n\n\t## Press 'R' to reload Ammo.\n\t\t\t(5 points will deduct)\n\n\t## Press 'B' to reload Power-ups.\n\t\t\t(10 points will deduct)");
+    instruction_Text.setCharacterSize(35);
+    instruction_Text.setFillColor(sf::Color::Black);
+    instruction_Text.setOutlineColor(sf::Color::Cyan);
+    instruction_Text.setOutlineThickness(2.5);
+    instruction_Text.setPosition(window.getSize().x / 2 - instruction_Text.getGlobalBounds().width / 2, 100);
+
+    // Credits Name texts
+    cred1Text.setFont(font2);
+    cred1Text.setString("\t\t\t\t\t CREDITS\n\nSYED HUZZATULLAH MIHAD ID- 210041218\n\n  AKILAH JAHIN BUSHRA ID- 210041252\n\n\t ZARIF BIN ISLAM ID- 210041264\n\n   RUBAEEYAT HOSSAIN ID- 210041266"); 
+    cred1Text.setCharacterSize(35);
+    cred1Text.setFillColor(sf::Color::Cyan);
+    cred1Text.setOutlineColor(sf::Color::Black);
+    cred1Text.setOutlineThickness(3);
+    cred1Text.setPosition(window.getSize().x / 2 - cred1Text.getGlobalBounds().width / 2, 150);
 
 }
 
@@ -160,7 +178,10 @@ void Menu::handleInput(sf::RenderWindow& window,sf::Event & event)
 
                if (start_r.getGlobalBounds().contains(mousePos.x, mousePos.y))
                {
-                   trigger = 1;
+                   if(level == 1)
+                       trigger = 1;
+                   if (level == 2)
+                       trigger = 6;
                    cout << "Start game clicked" << endl;
                     // Handle the start button click
                     // You can transition to your game or game settings here
@@ -307,9 +328,19 @@ void Menu::draw(sf::RenderWindow& window)
         window.draw(creditText);
     }
 
-    if (trigger == 1)
+    if (trigger == 1 || trigger == 6)
     {
         window.draw(score_box_player);
         window.draw(score_box_enemy);
+    }
+
+    if (trigger == 3)
+    {
+        window.draw(instruction_Text);
+    }
+
+    if (trigger == 4)
+    {
+        window.draw(cred1Text);
     }
 }
