@@ -2,41 +2,44 @@
 
 using namespace std;
 
-
 Menu::Menu(sf::RenderWindow& window) 
 {
-    if (!font.loadFromFile("Fonts/NEON GLOW-Bold.otf")) 
+    try
     {
-        // Handle font loading error
-    }
-
-    if (!font2.loadFromFile("Fonts/batmfa__.ttf"))
-    {
-        // Handle font loading error
-    }
-
-    //Mouse Cursor image
-    cursor_image.loadFromFile("Image/click6.png");
-    cursor.loadFromPixels(cursor_image.getPixelsPtr(), cursor_image.getSize(), sf::Vector2u(0, 0));
-
-    if (!mouse_buffer.loadFromFile("Audio/mouse.wav"))
-    {
-        // Handle error if the sound file fails to load
-        cout << "Mouse sound error" << endl;
-    }
-    mouse_Sound.setBuffer(mouse_buffer);
-
-    //Mouse positiong sound
-    if (trigger != 1)
-    {
-        if (!pos_buffer.loadFromFile("Audio/pos1.wav"))
+        if (!font.loadFromFile("Fonts/NEON GLOW-Bold.otf"))
         {
-            // Handle error if the sound file fails to load
-            cout << "Mouse sound error" << endl;
+            throw menu_exception();
         }
-        pos_sound.setBuffer(pos_buffer);
+
+        if (!font2.loadFromFile("Fonts/batmfa__.ttf"))
+        {
+            throw menu_exception();
+        }
+        //Mouse Cursor image
+        cursor_image.loadFromFile("Image/click6.png");
+        cursor.loadFromPixels(cursor_image.getPixelsPtr(), cursor_image.getSize(), sf::Vector2u(0, 0));
+
+        if (!mouse_buffer.loadFromFile("Audio/mouse.wav"))
+        {
+            throw menu_exception();
+        }
+        mouse_Sound.setBuffer(mouse_buffer);
+
+        //Mouse positiong sound
+        if (trigger != 1)
+        {
+            if (!pos_buffer.loadFromFile("Audio/pos1.wav"))
+            {
+                throw menu_exception();
+            }
+            pos_sound.setBuffer(pos_buffer);
+        }
     }
-  
+    catch (const menu_exception& e)
+    {
+        cout << "Menu error: Failed to load resources" << endl;
+    }
+    
     // SHOWING SPACE SHOOTER 
     title.setFont(font2);
     title.setString("Space Shooter");
@@ -142,13 +145,22 @@ Menu::Menu(sf::RenderWindow& window)
     score_box_enemy.setFillColor(sf::Color::Transparent);
     score_box_enemy.setOutlineColor(sf::Color::Cyan);
     score_box_enemy.setOutlineThickness(4);
+    
+    // Space to continue text
+    spacetoContinue.setFont(font2);
+    spacetoContinue.setString("Press 'Space' to continue...");
+    spacetoContinue.setPosition(window.getSize().x / 2 - 200, 550);
+    spacetoContinue.setCharacterSize(25);
+    spacetoContinue.setFillColor(sf::Color::Cyan);
+    spacetoContinue.setOutlineThickness(2);
+    spacetoContinue.setOutlineColor(sf::Color::Blue);
 
     // Instructions texts
     instruction_Text.setFont(font2);
     instruction_Text.setString("\t\t\t\t  Instructions\n\n\t## Press 'up', 'down', 'right', 'left'\n\t\t\tkeys for movement.\n\n\t## Press 'SPACE' Key for fire.\n\n\t## Press 'P' for Power-ups.\n\n\t## Press 'R' to reload Ammo.\n\t\t\t(5 points will deduct)\n\n\t## Press 'B' to reload Power-ups.\n\t\t\t(10 points will deduct)");
     instruction_Text.setCharacterSize(35);
-    instruction_Text.setFillColor(sf::Color::Black);
-    instruction_Text.setOutlineColor(sf::Color::Cyan);
+    instruction_Text.setFillColor(sf::Color::Cyan);
+    instruction_Text.setOutlineColor(sf::Color::Black);
     instruction_Text.setOutlineThickness(2.5);
     instruction_Text.setPosition(window.getSize().x / 2 - instruction_Text.getGlobalBounds().width / 2, 100);
 
@@ -161,6 +173,13 @@ Menu::Menu(sf::RenderWindow& window)
     cred1Text.setOutlineThickness(3);
     cred1Text.setPosition(window.getSize().x / 2 - cred1Text.getGlobalBounds().width / 2, 150);
 
+    // Final score text
+    final_score_text.setFont(font2);
+    final_score_text.setPosition(window.getSize().x / 2 - 200, 200);
+    final_score_text.setCharacterSize(40);
+    final_score_text.setFillColor(sf::Color::Cyan);
+    final_score_text.setOutlineThickness(2);
+    final_score_text.setOutlineColor(sf::Color::Blue);
 }
 
 void Menu::handleInput(sf::RenderWindow& window,sf::Event & event)
@@ -168,7 +187,7 @@ void Menu::handleInput(sf::RenderWindow& window,sf::Event & event)
       // Clicking options
       if (event.type == sf::Event::MouseButtonPressed) 
       {
-          if (event.mouseButton.button == sf::Mouse::Left && trigger != 1)
+          if (event.mouseButton.button == sf::Mouse::Left && trigger != 1 && trigger != 6)
           {
               mouse_Sound.play();
           }
@@ -178,51 +197,56 @@ void Menu::handleInput(sf::RenderWindow& window,sf::Event & event)
 
                if (start_r.getGlobalBounds().contains(mousePos.x, mousePos.y))
                {
-                   if(level == 1)
-                       trigger = 1;
-                   if (level == 2)
-                       trigger = 6;
+                   //trigger = 11;
+                   if (new_game_start == 1)
+                   {
+                       trigger = 11;
+                       score_show = point;
+                       //new_game_start = 0;
+                   } 
+                   if (new_game_start == 0)
+                   {
+                       if (level == 1)
+                           trigger = 1;
+                       if (level == 2)
+                           trigger = 6;
+                   }
                    cout << "Start game clicked" << endl;
-                    // Handle the start button click
-                    // You can transition to your game or game settings here
                }
                else if (score_r.getGlobalBounds().contains(mousePos.x, mousePos.y))
                {
                    trigger = 2;
-                   cout << "score clicked" << endl;
-                   // Handle the exit button click
-                   // You can close the window or implement an exit mechanism here
+                   cout << "High score clicked" << endl;
                }
                else if (instruct_r.getGlobalBounds().contains(mousePos.x, mousePos.y))
                {
                    trigger = 3;
                    cout << "instruction clicked" << endl;
-                   // Handle the exit button click
-                   // You can close the window or implement an exit mechanism here
                }
                else if (credit_r.getGlobalBounds().contains(mousePos.x, mousePos.y))
                {
                    trigger = 4;
                    cout << "credit clicked" << endl;
-                   // Handle the exit button click
-                   // You can close the window or implement an exit mechanism here
                }
                else if (exit_r.getGlobalBounds().contains(mousePos.x, mousePos.y))
                {
                    trigger = 5;
                    cout << "Exit clicked" << endl;
                    window.close();
-                    // Handle the exit button click
-                    // You can close the window or implement an exit mechanism here
                }
           }
-          if (event.mouseButton.button == sf::Mouse::Left && trigger != 0) // Not in menu background
+          if (event.mouseButton.button == sf::Mouse::Left && trigger != 0 && trigger != 10) // Not in menu background
           {
               sf::Vector2i mousePos = sf::Mouse::getPosition(window);
               if (back_r.getGlobalBounds().contains(mousePos.x, mousePos.y))
               {
                   trigger = 0;
+                  //new_game_start = 0;
                   cout << "Back clicked" << endl;
+                  if (trigger == 1 || trigger == 6)
+                  {
+                      new_game_start = 0;
+                  }
               }
           }
       }
@@ -306,7 +330,7 @@ void Menu::draw(sf::RenderWindow& window)
 {
     window.setMouseCursor(cursor);
 
-    if (trigger != 0)
+    if (trigger != 0 && trigger!= 10)
     {
         window.draw(back_r);
     }
@@ -342,5 +366,16 @@ void Menu::draw(sf::RenderWindow& window)
     if (trigger == 4)
     {
         window.draw(cred1Text);
+    }
+
+    if (trigger == 7 || trigger == 8)
+    {
+        string final_scorestring = to_string(score_show);
+        final_score_text.setString("Final score - " + final_scorestring);
+        window.draw(final_score_text);
+    }
+    if (trigger == 10)
+    {
+        window.draw(spacetoContinue);
     }
 }

@@ -36,6 +36,8 @@ public:
     vector<pair <double, double> >player_fire;
     vector<pair <double, double> >powerup_fire;
 
+    class player_exception {};
+
 	Player(sf::RenderWindow& window);
 
     void move(sf::RenderWindow& window) override;

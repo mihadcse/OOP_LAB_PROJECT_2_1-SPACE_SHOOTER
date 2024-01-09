@@ -3,36 +3,44 @@ using namespace std;
 
 Player::Player(sf::RenderWindow& window) : powerups(window)
 {
-	if (!font2.loadFromFile("Fonts/batmfa__.ttf"))
+	try
 	{
-		// Handle font loading error
-	}
-	// Player Image
-	if (!PlayerTexture1.loadFromFile("Image/plane3.png"))
-	{
-		cout << "Player image error" << endl;
-	}
-	if (!PlayerTexture2.loadFromFile("Image/plane4.png"))
-	{
-		cout << "Player image error" << endl;
-	}
-	PlayerSprite.setPosition(sf::Vector2f(500, 550));
+		if (!font2.loadFromFile("Fonts/batmfa__.ttf"))
+		{
+			throw player_exception();
+		}
+		// Player Image
+		if (!PlayerTexture1.loadFromFile("Image/plane3.png"))
+		{
+			throw player_exception();
+		}
+		if (!PlayerTexture2.loadFromFile("Image/plane4.png"))
+		{
+			throw player_exception();
+		}
+		PlayerSprite.setPosition(sf::Vector2f(500, 550));
 
-	//Player Fire Create
-	if (!Player_fire_texture.loadFromFile("Image/fire1.png"))
-	{
-		cout << "player fire error!!\n";
-	}
-	Player_fire_sprite.setTexture(Player_fire_texture);
-	//Player_fire_sprite.setPosition(sf::Vector2f(500, 500));
+		//Player Fire Create
+		if (!Player_fire_texture.loadFromFile("Image/fire1.png"))
+		{
+			throw player_exception();
+		}
+		Player_fire_sprite.setTexture(Player_fire_texture);
+		//Player_fire_sprite.setPosition(sf::Vector2f(500, 500));
 
-	// Player fire sound
-	if (!Player_fire_buffer.loadFromFile("Audio/fire1.wav"))
-	{
-		// Handle error
-		cout << "Player fire Audio error" << endl;
+		// Player fire sound
+		if (!Player_fire_buffer.loadFromFile("Audio/fire1.wav"))
+		{
+			// Handle error
+			throw player_exception();
+		}
+		Player_fire_sound.setBuffer(Player_fire_buffer);
 	}
-	Player_fire_sound.setBuffer(Player_fire_buffer);
+	catch (const player_exception& e)
+	{
+		cout << "Player error: Failed to load resources" << endl;
+	}
+	
 	
 	//Player text
 	player_Text.setFont(font2);

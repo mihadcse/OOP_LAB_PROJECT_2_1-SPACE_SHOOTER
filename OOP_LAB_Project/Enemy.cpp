@@ -4,29 +4,35 @@ using namespace std;
 
 Enemy::Enemy(sf::RenderWindow& window)
 {
-	if (!font2.loadFromFile("Fonts/batmfa__.ttf"))
+	try
 	{
-		// Handle font loading error
-	}
-	//Enemy create
-	if (!EnemyTexture1.loadFromFile("Image/enemy2.png"))
-	{
-		cout << "Enemy image error" << endl;
-	}
-	if (!EnemyTexture2.loadFromFile("Image/enemy4.png"))
-	{
-		cout << "Enemy image error" << endl;
-	}
-	EnemySprite.setPosition(sf::Vector2f(500, 70));
+		if (!font2.loadFromFile("Fonts/batmfa__.ttf"))
+		{
+			throw enemy_exception();
+		}
+		//Enemy create
+		if (!EnemyTexture1.loadFromFile("Image/enemy2.png"))
+		{
+			throw enemy_exception();
+		}
+		if (!EnemyTexture2.loadFromFile("Image/enemy4.png"))
+		{
+			throw enemy_exception();
+		}
+		EnemySprite.setPosition(sf::Vector2f(500, 70));
 
-
-
-	//Enemy fire create
-	if (!Enemy_fire_texture.loadFromFile("Image/bullet2.png"))
-	{
-		cout << "enemy fire error!!\n";
+		//Enemy fire create
+		if (!Enemy_fire_texture.loadFromFile("Image/bullet2.png"))
+		{
+			throw enemy_exception();
+		}
+		Enemy_fire_sprite.setTexture(Enemy_fire_texture);
 	}
-	Enemy_fire_sprite.setTexture(Enemy_fire_texture);
+	catch (const enemy_exception& e)
+	{
+		cout << "Enemy error: Failed to load resources" << endl;
+	}
+
 
 	//Enemy text
 	enemy_Text.setFont(font2);

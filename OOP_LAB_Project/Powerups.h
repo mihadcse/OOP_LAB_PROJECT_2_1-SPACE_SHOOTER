@@ -16,6 +16,8 @@ public:
     sf::Texture powerupTexture;
     sf::Sprite powerupSprite;
 
+    class powerup_exception {};
+
     Powerups(sf::RenderWindow& window);
 
     void createPowerup(sf::RenderWindow& window);

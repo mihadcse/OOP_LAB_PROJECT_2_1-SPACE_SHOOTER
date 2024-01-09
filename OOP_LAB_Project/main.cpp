@@ -1,11 +1,14 @@
 #include<iostream>
 #include<vector>
+#include<time.h>
+
 #include"menu.h"
 #include"BackgroundAndAudio.h"
 #include"Global.h"
 #include"Player.h"
 #include"Enemy.h"
 #include"Score.h"
+#include"Asteroids.h"
 
 #include<SFML/Graphics.hpp>
 #include<SFML/Audio.hpp>
@@ -29,10 +32,11 @@ int main()
     BackgroundAndAudio menu_background(window);
     Player player(window);
     Enemy enemy(window);
+    Score gameScore(window);
+    Asteroids asteroids(window);
 
     bool musicPlaying = false; // Flag to track music state
 
-    //cout << ammo << endl;
     while (window.isOpen()) 
     {
         sf::Event event;
@@ -42,8 +46,20 @@ int main()
             {
                 window.close();
             }
-       
+
             menu.handleInput(window,event);
+            if (trigger == 11)
+            {
+                gameScore.PlayernameInput(event); // Call PlayernameInput
+            }
+
+            if (trigger == 10)
+            {
+                if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space)
+                {
+                    trigger = 0;
+                }
+            }
             if (trigger == 1 || trigger == 6)
             {
                 if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space && ammo > 0)
@@ -74,6 +90,7 @@ int main()
                     reloadsound.play();
                     reload(); 
                     point = point - 5;
+                    score_show = score_show - 5;
                 }
             }
             //powerup reloading
@@ -89,14 +106,31 @@ int main()
                     reload_power_sound.play();
                     power = 5;
                     point = point - 10;
+                    score_show = score_show - 10;
                 }
             }
         }
-        
         window.clear(); // Clear the window
 
+        if (trigger == 9)
+        {
+            menu_background.startingSound.play();
+            menu_background.updateAnimation(window);  
+        }
+        if (trigger != 9 && trigger != 10)
+        {
+            menu_background.startingSound.stop();
+        }
         //Display main menu background
         menu_background.draw(window, trigger);
+        gameScore.draw(window);
+        // Display Menu
+        menu.draw(window);
+
+        if (trigger == 2)
+        {
+            gameScore.ShowScores(window);
+        }
 
         if ((trigger == 1 || trigger == 6) && musicPlaying)
         {
@@ -105,14 +139,12 @@ int main()
             //menu_background.updateAnimation(window);// Animation draw
             musicPlaying = false; // Update the flag
         }
-        else if ((trigger == 0 || trigger == 7 || trigger == 8) && !musicPlaying)
+        else if ((trigger == 9 || trigger == 0 || trigger == 7 || trigger == 8) && !musicPlaying)
         {
             menu_background.playMusic();
             musicPlaying = true; // Update the flag
         }
 
-        // Display Menu
-        menu.draw(window);
         if (trigger == 1 || trigger == 6)
         {
             player.draw(window, trigger);
@@ -120,6 +152,9 @@ int main()
             enemy.draw(window, trigger);
             enemy.move(window);
             enemy.fire(window);
+            asteroids.draw(window);
+            asteroids.spawnAsteroid();
+            asteroids.move(window);
 
             // Update bullet positions and draw bullets
             if (!player.player_fire.empty())
@@ -155,7 +190,11 @@ int main()
                         if(enemy_health <= 0 && trigger != 1)
                         {
                             trigger = 7;
+                            score_show = score_show + player_health;
+                            gameScore.ScoreUpdate();
                             reset_game();
+                            new_game_start = 1;
+                            window.clear();
                             break;
                         }
                         player.playerFireSpriteVect.erase(player.playerFireSpriteVect.begin() + i);
@@ -189,8 +228,11 @@ int main()
                         player_health--;
                         if (player_health <= 0)
                         {
+                            gameScore.ScoreUpdate();
                             reset_game();
                             trigger = 8;
+                            new_game_start = 1;
+                            window.clear();
                             break;
                         }
                     }
@@ -221,7 +263,7 @@ int main()
                         {
                             enemy_health = enemy_health - 3;
                             point = point + 3;
-                            score_show++;
+                            score_show = score_show + 3;;
                         }
                         if (enemy_health <= 0 && trigger == 1)
                         {
@@ -234,7 +276,11 @@ int main()
                         if (enemy_health <= 0 && trigger != 1)
                         {
                             trigger = 7;
+                            score_show = score_show + player_health;
+                            gameScore.ScoreUpdate();
                             reset_game();
+                            new_game_start = 1;
+                            window.clear();
                             break;
                         }
                         player.powerup_SpriteVect.erase(player.powerup_SpriteVect.begin() + i);
@@ -247,12 +293,33 @@ int main()
                 window.draw(player.powerup_SpriteVect[i]);
             }
 
+
+            //player asteroid collision
+            for (size_t i = 0; i < asteroids.asteroidSpriteVector.size(); i++)
+            {
+                if (asteroids.asteroidSpriteVector[i].getGlobalBounds().intersects(player.PlayerSprite.getGlobalBounds()))
+                {
+                    asteroids.asteroidSpriteVector.erase(asteroids.asteroidSpriteVector.begin() + i);
+                    player_health--;
+                    if (player_health <= 0)
+                    {
+                        gameScore.ScoreUpdate();
+                        reset_game();
+                        trigger = 8;
+                        new_game_start = 1;
+                        window.clear();
+                        break;
+                    }
+                }
+            }
         }
+
         // When ammo and power becomes 0 and points is less than 5 it will show game over
         if (ammo == 0 && power == 0 && point < 5)
         {
             reset_game();
             trigger = 8;
+            new_game_start = 1;
         }
 
         window.display(); // Display the content on the window

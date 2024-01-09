@@ -7,6 +7,8 @@
 class Menu
 {
 public:
+    class menu_exception {};
+
     Menu(sf::RenderWindow& window);
 
     // Handle user input and update the main menu
@@ -29,6 +31,8 @@ private:
     sf::Text creditText;
     sf::Text cred1Text;
     sf::Text instruction_Text;
+    sf::Text final_score_text;
+    sf::Text spacetoContinue;
  
     sf::SoundBuffer mouse_buffer;
     sf::Sound mouse_Sound;

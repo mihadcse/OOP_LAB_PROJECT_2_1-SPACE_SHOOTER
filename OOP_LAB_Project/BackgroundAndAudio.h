@@ -8,6 +8,8 @@
 class BackgroundAndAudio 
 {
 private:
+    sf::Texture start_texture;
+    sf::Sprite start_sprite;
     sf::Texture menu_backgroundTexture;
     sf::Sprite menu_backgroundSprite;
     sf::Texture game_backgroundTexture;
@@ -22,18 +24,27 @@ private:
     sf::Sprite winner_backgroundSprite;
     sf::Texture gameover_backgroundTexture;
     sf::Sprite gameover_backgroundSprite;
+    sf::Texture name_backgroundTexture;
+    sf::Sprite name_backgroundSprite;
+    sf::Texture score_backgroundTexture;
+    sf::Sprite score_backgroundSprite;
     
     sf::SoundBuffer backgroundSound;
     sf::Sound backsound;
     sf::SoundBuffer game_backgroundsound;
     sf::Sound game_backsound;
     sf::SoundBuffer enemy_entry_buffer;
+    sf::SoundBuffer startingBuffer;
 
 protected:
 
 
 public:
     sf::Sound enemy_entry_sound;
+    sf::Sound startingSound;
+
+    class back_exception {};
+
     BackgroundAndAudio(sf::RenderWindow& window);
 
     void setBackgroundSprite(const sf::Sprite& sprite);

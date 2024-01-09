@@ -1,6 +1,7 @@
 #include "Global.h"
 
-int trigger = 0;
+int trigger = 9;
+
 
 float enemyShotTimer = 0.0f;
 float enemyShotDelay = 2.0f;
@@ -16,6 +17,10 @@ int update = 1;
 int score_show = 0;
 int reset = 0;
 int level = 1;
+int new_game_start = 1;
+
+string playername = " ";
+string playername_file = " ";
 
 void reload()
 {
@@ -36,4 +41,7 @@ void reset_game()
 	reset = 1;
 	point = 0;
 	level = 1;
+	playername = " ";
 }
+
+

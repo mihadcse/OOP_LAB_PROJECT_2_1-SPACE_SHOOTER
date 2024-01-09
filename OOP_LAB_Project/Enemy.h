@@ -12,10 +12,7 @@ protected:
 
     //TIME DELAY FOR ENEMY FIRING
     sf::Clock clock;
-    float fireInterval = 2.0f;
-    //ENEMY FIRING TIMER
-    /*sf::Time deltaTime = clock.restart();
-    float elapsedTime = deltaTime.asSeconds();*/
+    float fireInterval = 2.8f;
 
     int direction = 0;
     sf::Text enemy_health_text;
@@ -27,6 +24,8 @@ public:
     sf::Sprite EnemySprite;
     vector<sf::Sprite>enemyFireSpriteVect;
     vector<pair <double, double> >enemy_fire;
+
+    class enemy_exception {};
 
     Enemy(sf::RenderWindow& window);
 
