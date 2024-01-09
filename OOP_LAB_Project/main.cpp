@@ -24,6 +24,12 @@ sf::Sound reloadsound;
 sf::SoundBuffer reload_power_buffer;
 sf::Sound reload_power_sound;
 
+template<typename T>   // Template function to increment points 
+T updatePoint(T& currentPoint, const T& valueToAdd)
+{
+    return point = currentPoint + valueToAdd;
+}
+
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(1140, 670), "Space Shooter");// this window ratio is fixed. It will show the window with a height of 1140 and width of 670
@@ -176,7 +182,8 @@ int main()
                         if (reset == 0)
                         {
                             enemy_health--;
-                            point++;
+                            //point++;
+                            updatePoint(point, 1); // Template function
                             score_show++;
                         }
                         if (enemy_health <= 0 && trigger == 1)
@@ -262,7 +269,8 @@ int main()
                         if (reset == 0)
                         {
                             enemy_health = enemy_health - 3;
-                            point = point + 3;
+                            //point = point + 3;
+                            updatePoint(point, 3); // Template function
                             score_show = score_show + 3;;
                         }
                         if (enemy_health <= 0 && trigger == 1)

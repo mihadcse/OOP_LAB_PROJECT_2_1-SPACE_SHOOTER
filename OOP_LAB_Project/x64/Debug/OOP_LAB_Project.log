@@ -1,72 +1,5 @@
-﻿  Asteroids.cpp
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\Asteroids.cpp(23,25): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-  BackgroundAndAudio.cpp
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\BackgroundAndAudio.cpp(99,34): warning C4101: 'e': unreferenced local variable
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\BackgroundAndAudio.cpp(192,31): warning C4305: 'argument': truncation from 'double' to 'float'
-  Enemy.cpp
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\Enemy.cpp(31,32): warning C4101: 'e': unreferenced local variable
-  Global.cpp
-  Player.cpp
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\Player.cpp(88,48): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
-          with
-          [
-              T=unsigned int
-          ]
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\Player.cpp(39,33): warning C4101: 'e': unreferenced local variable
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\Player.cpp(107,36): warning C4305: 'argument': truncation from 'double' to 'T'
-          with
-          [
-              T=float
-          ]
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\Player.cpp(108,39): warning C4305: 'argument': truncation from 'double' to 'T'
-          with
-          [
-              T=float
-          ]
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\Player.cpp(117,35): warning C4305: 'argument': truncation from 'double' to 'T'
-          with
-          [
-              T=float
-          ]
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\Player.cpp(118,38): warning C4305: 'argument': truncation from 'double' to 'T'
-          with
-          [
-              T=float
-          ]
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\Player.cpp(127,39): warning C4305: 'argument': truncation from 'double' to 'T'
-          with
-          [
-              T=float
-          ]
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\Player.cpp(128,42): warning C4305: 'argument': truncation from 'double' to 'T'
-          with
-          [
-              T=float
-          ]
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\Player.cpp(137,38): warning C4305: 'argument': truncation from 'double' to 'T'
-          with
-          [
-              T=float
-          ]
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\Player.cpp(138,41): warning C4305: 'argument': truncation from 'double' to 'T'
-          with
-          [
-              T=float
-          ]
-  Score.cpp
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\Score.cpp(32,50): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
-          with
-          [
-              T=unsigned int
-          ]
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\Score.cpp(35,51): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
-          with
-          [
-              T=unsigned int
-          ]
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\Score.cpp(12,35): warning C4101: 'e': unreferenced local variable
-  main.cpp
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\main.cpp(170,140): warning C4244: 'argument': conversion from '_Ty2' to 'T', possible loss of data
+﻿  main.cpp
+D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\main.cpp(176,140): warning C4244: 'argument': conversion from '_Ty2' to 'T', possible loss of data
           with
           [
               _Ty2=double
@@ -75,7 +8,7 @@ D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\main.cpp(
           [
               T=float
           ]
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\main.cpp(170,105): warning C4244: 'argument': conversion from '_Ty1' to 'T', possible loss of data
+D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\main.cpp(176,105): warning C4244: 'argument': conversion from '_Ty1' to 'T', possible loss of data
           with
           [
               _Ty1=double
@@ -84,7 +17,7 @@ D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\main.cpp(
           [
               T=float
           ]
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\main.cpp(221,134): warning C4244: 'argument': conversion from '_Ty2' to 'T', possible loss of data
+D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\main.cpp(228,134): warning C4244: 'argument': conversion from '_Ty2' to 'T', possible loss of data
           with
           [
               _Ty2=double
@@ -93,7 +26,7 @@ D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\main.cpp(
           [
               T=float
           ]
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\main.cpp(221,101): warning C4244: 'argument': conversion from '_Ty1' to 'T', possible loss of data
+D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\main.cpp(228,101): warning C4244: 'argument': conversion from '_Ty1' to 'T', possible loss of data
           with
           [
               _Ty1=double
@@ -102,7 +35,7 @@ D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\main.cpp(
           [
               T=float
           ]
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\main.cpp(257,140): warning C4244: 'argument': conversion from '_Ty2' to 'T', possible loss of data
+D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\main.cpp(264,140): warning C4244: 'argument': conversion from '_Ty2' to 'T', possible loss of data
           with
           [
               _Ty2=double
@@ -111,7 +44,7 @@ D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\main.cpp(
           [
               T=float
           ]
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\main.cpp(257,104): warning C4244: 'argument': conversion from '_Ty1' to 'T', possible loss of data
+D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\main.cpp(264,104): warning C4244: 'argument': conversion from '_Ty1' to 'T', possible loss of data
           with
           [
               _Ty1=double
@@ -120,175 +53,4 @@ D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\main.cpp(
           [
               T=float
           ]
-  menu.cpp
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\menu.cpp(152,56): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
-          with
-          [
-              T=unsigned int
-          ]
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\menu.cpp(178,57): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
-          with
-          [
-              T=unsigned int
-          ]
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\menu.cpp(38,34): warning C4101: 'e': unreferenced local variable
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\menu.cpp(198,75): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\menu.cpp(198,63): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\menu.cpp(216,80): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\menu.cpp(216,68): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\menu.cpp(221,83): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\menu.cpp(221,71): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\menu.cpp(226,81): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\menu.cpp(226,69): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\menu.cpp(231,79): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\menu.cpp(231,67): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\menu.cpp(241,73): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\menu.cpp(241,61): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\menu.cpp(258,84): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\menu.cpp(258,65): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\menu.cpp(271,84): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\menu.cpp(271,65): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\menu.cpp(284,87): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\menu.cpp(284,68): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\menu.cpp(297,85): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\menu.cpp(297,66): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\menu.cpp(310,83): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\menu.cpp(310,64): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-  Generating Code...
   OOP_LAB_Project.vcxproj -> D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\x64\Debug\OOP_LAB_Project.exe

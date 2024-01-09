@@ -2,7 +2,6 @@
 
 int trigger = 9;
 
-
 float enemyShotTimer = 0.0f;
 float enemyShotDelay = 2.0f;
 int max_ammo = 10, ammo = 10;

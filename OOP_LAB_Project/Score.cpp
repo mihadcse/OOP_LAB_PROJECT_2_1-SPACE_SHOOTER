@@ -36,7 +36,7 @@ Score::Score(sf::RenderWindow& window)
     scoreText1.setCharacterSize(50);
     scoreText1.setFillColor(sf::Color::Cyan);
     scoreText1.setOutlineThickness(3);
-    scoreText1.setOutlineColor(sf::Color::Black);
+    scoreText1.setOutlineColor(sf::Color::Blue);
     scoreText1.setString("HIGH SCORES");
 }
 
@@ -64,7 +64,6 @@ void Score::PlayernameInput(sf::Event& event)
             trigger = 6;
     }
 }
-
 
 void Score::ScoreUpdate()
 {

@@ -33,6 +33,7 @@ private:
     sf::Text instruction_Text;
     sf::Text final_score_text;
     sf::Text spacetoContinue;
+    sf::Text ScoreInstruction;
  
     sf::SoundBuffer mouse_buffer;
     sf::Sound mouse_Sound;

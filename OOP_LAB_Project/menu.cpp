@@ -180,6 +180,16 @@ Menu::Menu(sf::RenderWindow& window)
     final_score_text.setFillColor(sf::Color::Cyan);
     final_score_text.setOutlineThickness(2);
     final_score_text.setOutlineColor(sf::Color::Blue);
+
+    //score Instruction text
+    ScoreInstruction.setFont(font2);
+    ScoreInstruction.setPosition(window.getSize().x / 2 - 200, 600);
+    ScoreInstruction.setString("Score = Health + Points");
+    ScoreInstruction.setCharacterSize(25);
+    ScoreInstruction.setFillColor(sf::Color::Cyan);
+    ScoreInstruction.setOutlineThickness(2);
+    ScoreInstruction.setOutlineColor(sf::Color::Blue);
+
 }
 
 void Menu::handleInput(sf::RenderWindow& window,sf::Event & event)
@@ -377,5 +387,10 @@ void Menu::draw(sf::RenderWindow& window)
     if (trigger == 10)
     {
         window.draw(spacetoContinue);
+    }
+
+    if (trigger == 2)
+    {
+        window.draw(ScoreInstruction);
     }
 }
