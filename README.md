@@ -9,6 +9,6 @@ If you want to play the game:
 3. Run the `OOP_LAB_Project.exe` file to start the game.
 
 ---
-## Watch the Demo Video of this game
+## 📺 Watch the Demo Video of This Game
 
 [![Watch the video](https://img.youtube.com/vi/vbWuK4hSrFo/maxresdefault.jpg)](https://www.youtube.com/watch?v=vbWuK4hSrFo)
