@@ -1,0 +1,17 @@
+﻿  BackgroundAndAudio.cpp
+D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\BackgroundAndAudio.cpp(99,34): warning C4101: 'e': unreferenced local variable
+D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\BackgroundAndAudio.cpp(192,31): warning C4305: 'argument': truncation from 'double' to 'float'
+  Score.cpp
+D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\Score.cpp(32,50): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\Score.cpp(35,51): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\OOP_LAB_Project\Score.cpp(12,35): warning C4101: 'e': unreferenced local variable
+  Generating Code...
+  OOP_LAB_Project.vcxproj -> D:\IUT SEMESTER 3\CSE 4302\LAB_Project\OOP_LAB_Project\x64\Debug\OOP_LAB_Project.exe
